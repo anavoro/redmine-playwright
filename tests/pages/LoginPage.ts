@@ -47,6 +47,6 @@ export class LoginPage extends BasePage {
   }
   async logout() {
     await this.page.click("text=Sign out");
-    await this.page.waitForSelector("a.logout", { timeout: 5000 });
+    await this.page.waitForSelector("a.login", { timeout: 5000 });
   }
 }
