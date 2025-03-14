@@ -19,6 +19,7 @@ type RedmineFixtures = {
   basePage: BasePage;
   loginPage: LoginPage;
   authenticatedPage: LoginPage;
+  invalidLoginPage: LoginPage;
   registrationPage: RegisterPage;
   searchPage: SearchPage;
 };
@@ -42,6 +43,15 @@ export const test = base.extend<RedmineFixtures>({
     await loginPage.login(username, password);
 
     await loginPage.isUserLoggedIn();
+
+    await use(loginPage);
+  },
+
+  invalidLoginPage: async ({ loginPage }, use) => {
+    const invalidLogin = process.env.REDMINE_USERNAME_INVALID!;
+    const password = process.env.REDMINE_PASSWORD!;
+
+    await loginPage.login(invalidLogin, password);
 
     await use(loginPage);
   },

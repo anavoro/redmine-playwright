@@ -7,10 +7,6 @@ export class BasePage {
     await this.page.goto(`https://www.redmine.org${path}`);
   }
 
-  async getPageTitle() {
-    return await this.page.title();
-  }
-
   async waitForLoadState() {
     await this.page.waitForLoadState("load");
   }
