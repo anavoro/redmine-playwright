@@ -4,13 +4,6 @@ import { BasePage } from "./tests/pages/BasePage";
 import { LoginPage } from "./tests/pages/LoginPage";
 import { RegistrationPage } from "./tests/pages/RegistrationPage";
 import { SearchPage } from "./tests/pages/SearchPage";
-import {
-  randUser,
-  randEmail,
-  randFirstName,
-  randLastName,
-  randPassword,
-} from "@ngneat/falso";
 
 config();
 
@@ -23,16 +16,16 @@ type RedmineFixtures = {
 };
 
 export const test = base.extend<RedmineFixtures>({
+  registrationPage: async ({ page }, use) => {
+    const registrationPage = new RegistrationPage(page);
+    await registrationPage.navigateToRegistration();
+    await use(registrationPage);
+  },
+
   loginPage: async ({ page }, use) => {
     const loginPage = new LoginPage(page);
     await loginPage.navigateToLogin();
     await use(loginPage);
-  },
-
-  registrationPage: async ({ page }, use) => { 
-    const registrationPage = new RegistrationPage(page);
-    await registrationPage.navigateToRegistration();
-    await use(registrationPage);
   },
 
   authenticatedPage: async ({ loginPage }, use) => {
