@@ -35,6 +35,7 @@ export class LoginPage extends BasePage {
     await this.clickLogin();
     await this.waitForLoadState();
   }
+
   async isUserLoggedIn(): Promise<boolean> {
     return await this.page
       .locator("a.logout")
@@ -42,9 +43,11 @@ export class LoginPage extends BasePage {
       .then(() => true)
       .catch(() => false);
   }
+
   async getErrorMessage() {
     return await this.page.locator("#flash_error").innerText();
   }
+
   async logout() {
     await this.page.click("text=Sign out");
     await this.page.waitForSelector("a.login", { timeout: 5000 });

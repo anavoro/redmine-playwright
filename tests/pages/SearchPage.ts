@@ -2,6 +2,8 @@ import { Page } from "@playwright/test";
 import { BasePage } from "./BasePage";
 
 export class SearchPage extends BasePage {
+  private randomSearchTerm: string = "";
+
   constructor(page: Page) {
     super(page);
   }
@@ -17,14 +19,13 @@ export class SearchPage extends BasePage {
   async clickSearch() {
     await this.page.click('input[name="commit"]');
   }
-  async search() {
+
+  getRandomSearchTerm(): string {
     const searchTerms = ["bug", "issue", "project", "request"];
-    const randomSearchTerm =
-      searchTerms[Math.floor(Math.random() * searchTerms.length)];
-    await this.enterSearch(randomSearchTerm);
-    await this.clickSearch();
-    return randomSearchTerm;
+    this.randomSearchTerm = searchTerms[Math.floor(Math.random() * searchTerms.length)];
+    return this.randomSearchTerm;
   }
+
   async getSearchResults() {
     return await this.page.locator("#search-results").innerText();
   }

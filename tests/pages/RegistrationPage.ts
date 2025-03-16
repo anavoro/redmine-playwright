@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import { BasePage } from "./BasePage";
 
-export class RegisterPage extends BasePage {
+export class RegistrationPage extends BasePage {
   constructor(page: Page) {
     super(page);
   }
@@ -56,6 +56,7 @@ export class RegisterPage extends BasePage {
     await this.clickRegister();
     await this.waitForLoadState();
   }
+
   async getConfirmationMessage() {
     return await this.page.locator(".flash.notice").innerText();
   }
