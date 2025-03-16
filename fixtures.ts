@@ -18,7 +18,6 @@ type RedmineFixtures = {
   basePage: BasePage;
   loginPage: LoginPage;
   authenticatedPage: LoginPage;
-  invalidLoginPage: LoginPage;
   registrationPage: RegistrationPage;
   searchPage: SearchPage;
 };
